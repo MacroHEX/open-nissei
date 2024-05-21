@@ -67,10 +67,10 @@ export const Login = () => {
             Iniciar sesion
           </CardTitle>
           <CardDescription>
-            <p>
+            <span>
               Si no cuentas con una cuenta.<br/>
               <Link to='/signup' className='font-bold text-emerald-600'> Regístrate aquí.</Link>
-            </p>
+            </span>
           </CardDescription>
         </CardHeader>
         <CardContent>
