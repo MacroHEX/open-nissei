@@ -1,15 +1,16 @@
 import {Heart, ShoppingBag, User} from 'lucide-react';
 import {useLoginStore} from '../../store/userStore.ts';
 import {Link} from 'react-router-dom';
+import logo from '@/assets/logo.svg'
 
 export const Header = () => {
   const {firstname} = useLoginStore();
 
   return (
-    <header className='h-20 bg-white w-full flex items-center justify-between px-4 shadow-md mt-4'>
+    <header className='h-20 bg-white w-full flex items-center justify-around px-4 shadow-md mt-4'>
       <div className='flex items-center'>
         <Link to='/'>
-          <img src='' alt='Logo' className='h-8'/>
+          <img src={logo} alt='Logo' className='h-12'/>
         </Link>
       </div>
       <div className='hidden md:flex justify-center items-center'>
@@ -17,7 +18,7 @@ export const Header = () => {
           <input
             type='text'
             placeholder='Buscar en toda la tienda...'
-            className='border rounded-l-lg px-4 py-2 w-64'
+            className='border rounded-l-lg px-4 py-2 w-96'
           />
           <button className='bg-[#fcb800] text-white px-4 py-2 rounded-r-lg'>
             Buscar
@@ -29,7 +30,7 @@ export const Header = () => {
         <ShoppingBag className='w-6 h-6 hover:text-[#fcb800] hover:scale-110 inline-block cursor-pointer'/>
         <User className='w-6 h-6 hover:text-[#fcb800] hover:scale-110 inline-block cursor-pointer'/>
         {firstname
-          ? <span>Hola,<br/>{firstname}</span>
+          ? <span className='hover:text-[#fcb800]'>Hola,<br/>{firstname}</span>
           : <div className='flex flex-col text-xs'>
             <Link to='/login' className='hover:text-[#fcb800] hover:scale-105 inline-block'>Inicia Sesión</Link>
             <Link to='/signup' className='hover:text-[#fcb800] hover:scale-105 inline-block'>Crea una cuenta</Link>
