@@ -11,6 +11,7 @@ import FormFieldComponent from "@/shared/FormFieldComponent.tsx";
 import {useState} from "react";
 import supabase from "@/util/supabase.ts";
 import {toast} from "@/components/ui/use-toast.ts";
+import {useLoginStore} from "../../store/userStore.ts";
 
 const FormSchema = z.object({
   email: z.string().min(1, {message: "El correo no puede estar vacio."}).email('El correo no es valido.'),
@@ -20,6 +21,8 @@ const FormSchema = z.object({
 export const Login = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const togglePassword = () => setShowPassword(prevState => !prevState);
+
+  const loginStore = useLoginStore();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -36,6 +39,13 @@ export const Login = () => {
         password: data.password,
       });
       if (signInData.user) {
+        loginStore.saveLoginData({
+          id: signInData.user.id,
+          username: signInData.user.user_metadata.username,
+          firstname: signInData.user.user_metadata.firstname,
+          lastname: signInData.user.user_metadata.lastname,
+          phone: signInData.user.user_metadata.phone,
+        })
         toast({
           title: "Bienvenido",
           description: `Bienvenido ${signInData.user.user_metadata.username}`,
