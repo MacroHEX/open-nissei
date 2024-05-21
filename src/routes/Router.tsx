@@ -1,5 +1,4 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {Home} from "@/screens/Home.tsx";
 import {Login} from "@/screens/Login.tsx";
 import {Signup} from "@/screens/Signup.tsx";
 
