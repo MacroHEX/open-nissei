@@ -9,16 +9,18 @@ interface LoginData {
   phone?: string;
   saveLoginData: (loginData: Partial<LoginData>) => void;
   clearLoginData: () => void;
+  isLoggedIn: () => boolean;
 }
 
 export const useLoginStore = create<LoginData>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       id: '',
       username: '',
       firstname: '',
       lastname: '',
       phone: '',
+      isLoggedIn: () => !!get().id,
       saveLoginData: (loginData: Partial<LoginData>) => set((state) => ({...state, ...loginData})),
       clearLoginData: () =>
         set(() => ({
