@@ -54,10 +54,13 @@ export const Header = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu> :
-          <div className='flex flex-col'>
-            <Link to='/login' className='hover:text-[#fcb800] hover:scale-105 inline-block'>Inicia Sesión</Link>
-            <Link to='/signup' className='hover:text-[#fcb800] hover:scale-105 inline-block'>Crea una cuenta</Link>
-          </div>
+          <>
+            <User className='w-6 h-6 hover:text-[#fcb800] hover:scale-110 inline-block cursor-pointer'/>
+            <div className='flex flex-col'>
+              <Link to='/login' className='hover:text-[#fcb800] hover:scale-105 inline-block'>Inicia Sesión</Link>
+              <Link to='/signup' className='hover:text-[#fcb800] hover:scale-105 inline-block'>Crea una cuenta</Link>
+            </div>
+          </>
         }
       </div>
     </header>
