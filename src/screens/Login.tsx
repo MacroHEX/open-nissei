@@ -4,7 +4,7 @@ import {Form} from "@/components/ui/form.tsx";
 
 import {zodResolver} from "@hookform/resolvers/zod";
 import {z} from "zod";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {MainLayout} from "@/layouts/MainLayout.tsx";
 import FormFieldComponent from "@/shared/FormFieldComponent.tsx";
@@ -23,6 +23,7 @@ export const Login = () => {
   const togglePassword = () => setShowPassword(prevState => !prevState);
 
   const loginStore = useLoginStore();
+  const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -46,16 +47,20 @@ export const Login = () => {
           lastname: signInData.user.user_metadata.lastname,
           phone: signInData.user.user_metadata.phone,
         })
-        toast({
-          title: "Bienvenido",
-          description: `Bienvenido ${signInData.user.user_metadata.username}`,
-        })
+        navigate('/');
       }
-    } catch (e: any) {
-      toast({
-        title: "Error al iniciar sesión",
-        description: e.message,
-      });
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        toast({
+          title: "Error al iniciar sesión",
+          description: e.message,
+        });
+      } else {
+        toast({
+          title: "Error al iniciar sesión",
+          description: "Ocurrió un error inesperado",
+        });
+      }
     }
   }
 
