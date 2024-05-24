@@ -14,7 +14,7 @@ export const MainLayout = ({children}: Props) => {
         <Header/>
         <Menu/>
         <div className="flex">
-          <div className="flex flex-1 justify-center items-center overflow-auto p-5">{children}</div>
+          <div className="flex flex-col flex-1 justify-center items-center overflow-auto p-5 gap-4">{children}</div>
           <Toaster/>
         </div>
       </div>
